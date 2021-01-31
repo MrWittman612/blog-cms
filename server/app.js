@@ -10,6 +10,8 @@ const port = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+admin.use(express.json());
+admin.use(express.urlencoded({extended: true}));
 
 connectMongoDB();
 

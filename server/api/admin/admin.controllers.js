@@ -20,5 +20,4 @@ const createAdmin = async (req, res) => {
     }
 };
 
-exports.getAdmins = getAdmins;
-exports.createAdmin = createAdmin;
+module.exports = {getAdmins, createAdmin};

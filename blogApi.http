@@ -43,15 +43,22 @@ GET {{baseUrl}}/blog HTTP/1.1
 Content-Type: application/json
 
 
+
+###
+
+GET {{baseUrl}}/blog/60171e95ab58ba439c33c683 HTTP/1.1
+Content-Type: application/json
+
 ###
 
 
-POST  {{baseUrl}}/blog HTTP/1.1
+POST  {{baseUrl}}/blogs HTTP/1.1
 Content-Type: application/json
 
 {
     "name":"jimmy",
-    "title":"boss"
+    "title":"Not getting your first job as a jr Dev",
+    "content":"Est ea cupidatat veniam consequat eiusmod reprehenderit cillum qui adipisicing ullamco laborum. Nisi dolor amet ad est non amet dolor eiusmod incididunt eu commodo exercitation irure occaecat. Irure veniam non fugiat minim aute amet in elit duis eu ex qui amet. Et cupidatat minim incididunt sint mollit ad minim anim."
 } 
 
 
@@ -68,5 +75,27 @@ POST  {{adminUrl}}/ HTTP/1.1
 Content-Type: application/json
 
 {
- "user": "601324f0843d13413cdfd013"
+    "user": "601324f0843d13413cdfd013"
 }
+
+###
+
+GET {{adminUrl}}/blogs HTTP/1.1
+Content-Type: application/json
+
+
+
+
+###
+
+
+POST  {{adminUrl}}/blogs HTTP/1.1
+Content-Type: application/json
+
+{
+    "name":"Chad",
+    "title":"Living on a sailboat as a software enginer",
+    "content":"Est ea cupidatat veniam consequat eiusmod reprehenderit cillum qui adipisicing ullamco laborum. Nisi dolor amet ad est non amet dolor eiusmod incididunt eu commodo exercitation irure occaecat. Irure veniam non fugiat minim aute amet in elit duis eu ex qui amet. Et cupidatat minim incididunt sint mollit ad minim anim."
+}
+
+###
