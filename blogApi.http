@@ -1,23 +1,41 @@
 @baseUrl = http://localhost:3001/api
 @adminUrl = http://localhost:5000
 
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMTVkNDViOTM3OWI1MGEyNDdhOWE1MiIsImlhdCI6MTYxMjEyNDY4OSwiZXhwIjozMjI0MjUyOTc1fQ.XH5Jub6MpETRDhtwStSWO0TjifSm-yGDrG77dWBXeA8
+
 
 ###
 
 GET {{baseUrl}}/user HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 
 ###
 
 
-POST  {{baseUrl}}/user HTTP/1.1
+POST  {{baseUrl}}/user/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "name":"jimmy",
-    "title":"boss"
+    "email":"user1@test.com",
+    "password": "password"
 }
+
+
+
+###
+
+
+POST  {{baseUrl}}/user/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "name":"user1",
+    "email":"user1@test.com",
+    "password": "password"
+}
+
 
 ###
 

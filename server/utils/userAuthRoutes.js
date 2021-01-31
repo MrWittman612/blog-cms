@@ -8,17 +8,17 @@ const jwtSecret = 'somethingLong';
 const newToken = (user) =>
     jwt.sign({id: user.id}, jwtSecret, {expiresIn: jwtExp});
 
-const verifyToken = async (token) => {
-    try {
-        const payload = await jwt.verify(token);
-        return payload;
-    } catch (error) {
-        console.log(error);
-    }
-};
+function verifyToken(token) {
+    return new Promise((res, rej) => {
+        jwt.verify(token, jwtSecret, (err, payload) => {
+            if (err) rej(err);
+            res(payload);
+        });
+    });
+}
 
 const login = async (req, res) => {
-    const loginRequest = {...req.body};
+    const loginRequest = req.body;
 
     try {
         const user = await User.findOne({email: loginRequest.email});
@@ -26,14 +26,18 @@ const login = async (req, res) => {
             return res.status(400).send({message: 'Please register'});
         }
 
-        const match = await bcrypt.compare(loginRequest.password, use.password);
+        const match = await bcrypt.compare(
+            loginRequest.password,
+            user.password
+        );
 
         if (!match) {
-            return res.status(401).send({message: 'Opps something went wrong'});
+            return res.status(401).send({message: 'Password is invalid'});
         }
         const token = newToken(user);
         return res.status(201).send({token});
     } catch (error) {
+        console.log('error::', error);
         return res.status(500).end();
     }
 };
@@ -43,7 +47,7 @@ const register = async (req, res) => {
 
     try {
         const user = await User.findOne({email: registerRequest.email})
-            .select('exec')
+            .select('email')
             .exec();
 
         if (user) {
@@ -52,10 +56,13 @@ const register = async (req, res) => {
                 .send({message: 'There is already a account With that email'});
         }
 
-        const hashedUserPassword = await bcrypt.hash(registerRequest.email, 10);
+        const hashedUserPassword = await bcrypt.hash(
+            registerRequest.password,
+            10
+        );
         const newUser = {
             name: registerRequest.name,
-            email: registerRequest.name,
+            email: registerRequest.email,
             password: hashedUserPassword,
         };
 
@@ -63,7 +70,7 @@ const register = async (req, res) => {
 
         const tokenizedUser = newToken(createUserResponse);
 
-        return res.status(200).send({tokenizedUser});
+        return res.status(200).send({token: tokenizedUser});
     } catch (error) {
         console.log(error);
     }
@@ -71,8 +78,9 @@ const register = async (req, res) => {
 
 const protectedUserRoute = async (req, res, next) => {
     const bearer = req.headers.authorization;
-    if (!bearer || !bear.startWith('Bearer ')) {
-        return res.send(401).end();
+
+    if (!bearer || !bearer.startsWith('Bearer ')) {
+        return res.status(401).end();
     }
     const token = bearer.split('Bearer ')[1].trim();
     if (!token) {
@@ -81,7 +89,9 @@ const protectedUserRoute = async (req, res, next) => {
     let payload;
     try {
         payload = await verifyToken(token);
+        console.log('no token', payload);
     } catch (error) {
+        console.log(error);
         return res.status(401).end();
     }
 
@@ -93,6 +103,7 @@ const protectedUserRoute = async (req, res, next) => {
         return res.status(401).end();
     }
     req.user = user;
+    console.log('user::', req.user);
     return next();
 };
 

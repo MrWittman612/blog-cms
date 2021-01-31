@@ -1,8 +1,18 @@
 const express = require('express');
-const { getUsers, createUser } = require('./user.controllers');
+const {me} = require('./user.controllers');
+const {
+    login,
+    register,
+    protectedUserRoute,
+} = require('../../utils/userAuthRoutes');
 
 const router = express.Router();
 
-router.route('/').get(getUsers).post(createUser);
+// this module extends http://host/user
+
+router.route('/').get(protectedUserRoute, me);
+
+router.route('/login').post(login);
+router.route('/register').post(register);
 
 module.exports = router;
