@@ -94,7 +94,8 @@ Content-Type: application/json
 
 {
     "name":"Chad",
-    "title":"Living on a sailboat as a software enginer",
+    "title":"Living on a sailboat as a software enginer part 2",
+    "featured": true,
     "content":"Est ea cupidatat veniam consequat eiusmod reprehenderit cillum qui adipisicing ullamco laborum. Nisi dolor amet ad est non amet dolor eiusmod incididunt eu commodo exercitation irure occaecat. Irure veniam non fugiat minim aute amet in elit duis eu ex qui amet. Et cupidatat minim incididunt sint mollit ad minim anim."
 }
 

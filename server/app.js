@@ -1,5 +1,6 @@
 'use strict';
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const admin = express();
 const {connectMongoDB} = require('./utils/connectMongoDB');
@@ -8,6 +9,7 @@ const blogRouter = require('./api/blog/blog.router');
 const adminRouter = require('./api/admin/admin.router');
 const port = process.env.PORT || 3001;
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 admin.use(express.json());
@@ -17,7 +19,7 @@ connectMongoDB();
 
 app.use('/api/user', userRouter);
 
-app.use('/api/blog', blogRouter);
+app.use('/api/blogs', blogRouter);
 
 admin.use('/', adminRouter);
 
