@@ -45,7 +45,7 @@ export function TopNavBar() {
                 </Button>
                 <Button
                     component={Link}
-                    to={'/Admin'}
+                    to={'/admin'}
                     variant='outlined'
                     style={{marginLeft: 12}}
                 >

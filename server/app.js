@@ -9,11 +9,15 @@ const blogRouter = require('./api/blog/blog.router');
 const adminRouter = require('./api/admin/admin.router');
 const port = process.env.PORT || 3001;
 
+const jsonParser = express.json();
+
 app.use(cors());
-app.use(express.json());
+app.use(jsonParser);
 app.use(express.urlencoded({extended: true}));
-admin.use(express.json());
+admin.use(cors());
+admin.use(jsonParser);
 admin.use(express.urlencoded({extended: true}));
+// const urlencodedParser = express.urlencoded({extended: false});
 
 connectMongoDB();
 
@@ -21,7 +25,8 @@ app.use('/api/user', userRouter);
 
 app.use('/api/blogs', blogRouter);
 
-admin.use('/', adminRouter);
+admin.use('/admin/api', adminRouter);
+// app.use('/api/admin', admin);
 
 function start() {
     app.listen(port, () => console.log('server started'));

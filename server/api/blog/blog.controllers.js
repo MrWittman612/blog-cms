@@ -33,8 +33,4 @@ const createBlog = async (req, res) => {
     }
 };
 
-// exports.getBlogs = getBlogs;
-
-// exports.createBlog = createBlog;
-
 module.exports = {getBlogs, createBlog, getBlog};

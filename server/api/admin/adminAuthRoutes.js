@@ -20,26 +20,11 @@ function verifyToken(token) {
     });
 }
 
-const getAdmin = async (req, res) => {
-    console.log('🚀 ~ file: admin.controllers.js getAdmins ~ req', req.admin);
-    try {
-        const admin = await Admin.findById(req.admin._id).select('-password');
-        console.log('admin::', admin);
-
-        return res.send(admin);
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-const adminLogin = async (req, res) => {
+const login = async (req, res) => {
     const loginRequest = req.body;
 
     try {
-        const admin = await Admin.findOne({
-            username: loginRequest.username,
-        }).select('password username');
-
+        const admin = await Admin.findOne({email: loginRequest.email});
         if (!admin) {
             return res.status(400).send({message: 'You are not welcome'});
         }
@@ -60,15 +45,14 @@ const adminLogin = async (req, res) => {
     }
 };
 
-const registerAdmin = async (req, res) => {
+const register = async (req, res) => {
     const registerRequest = {...req.body};
-    console.log(
-        '🚀 ~ file: admin.controllers.js ~ line 72 ~ registerAdmin ~ registerRequest',
-        registerRequest
-    );
+    console.log("shouldn't need this for now");
 
     try {
-        const user = await Admin.findOne({username: registerRequest.username});
+        const user = await Admin.findOne({email: registerRequest.email})
+            .select('email')
+            .exec();
 
         if (user) {
             return res
@@ -80,17 +64,17 @@ const registerAdmin = async (req, res) => {
             registerRequest.password,
             10
         );
-        const newAdmin = {
-            username: registerRequest.username,
-            user: registerRequest.user,
+        const newUser = {
+            name: registerRequest.name,
+            email: registerRequest.email,
             password: hashedUserPassword,
         };
 
-        const createAdminResponse = Admin.create(newAdmin);
+        const createUserResponse = Admin.create(newUser);
 
-        const tokenizedAdmin = newToken(createAdminResponse);
+        const tokenizedUser = newToken(createUserResponse);
 
-        return res.status(200).send({token: tokenizedAdmin});
+        return res.status(200).send({token: tokenizedUser});
     } catch (error) {
         console.log(error);
     }
@@ -119,7 +103,7 @@ const protectedAdminRoute = async (req, res, next) => {
         .select('-password -salt')
         .lean()
         .exec();
-    if (!admin) {
+    if (!user) {
         return res.status(401).end();
     }
     req.admin = admin;
@@ -127,22 +111,4 @@ const protectedAdminRoute = async (req, res, next) => {
     return next();
 };
 
-const getAdmins = async (req, res) => {
-    console.log('🚀 ~ file: admin.controllers.js getAdmins ~ req', req);
-    try {
-        const admin = await Admin.find();
-        console.log('users', admin);
-
-        return res.send(admin);
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-module.exports = {
-    adminLogin,
-    registerAdmin,
-    protectedAdminRoute,
-    getAdmins,
-    getAdmin,
-};
+module.exports = {login, register, protectedUserRoute: protectedAdminRoute};

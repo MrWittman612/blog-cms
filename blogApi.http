@@ -1,8 +1,8 @@
 @baseUrl = http://localhost:3001/api
-@adminUrl = http://localhost:5000
+@adminUrl = http://localhost:5000/admin/api
 
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMTVkNDViOTM3OWI1MGEyNDdhOWE1MiIsImlhdCI6MTYxMjEyNDY4OSwiZXhwIjozMjI0MjUyOTc1fQ.XH5Jub6MpETRDhtwStSWO0TjifSm-yGDrG77dWBXeA8
-
+@adminToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMWE4ODc2ZjYwOTRhNDYwNDAwYjNmZSIsImlhdCI6MTYxMjM1MjgzNSwiZXhwIjozMjI0NzA5MjE5fQ.FyKFXxBuQjBnv-1niE1IAiIrqDRwFxqSZZgUjnMepYM
 
 ###
 
@@ -64,18 +64,32 @@ Content-Type: application/json
 
 ###
 
-GET {{adminUrl}} HTTP/1.1
+GET {{adminUrl}}/ HTTP/1.1
 Content-Type: application/json
+Authorization: AdminBearer {{adminToken}}
 
 
 ###
 
 
-POST  {{adminUrl}}/ HTTP/1.1
+POST  {{adminUrl}}/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "user": "601324f0843d13413cdfd013"
+    "username": "bob",
+    "password":"password"
+}
+
+###
+
+
+POST  {{adminUrl}}/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "user": "601324f0843d13413cdfd013",
+    "username": "bob",
+    "password":"password"
 }
 
 ###
