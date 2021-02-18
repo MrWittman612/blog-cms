@@ -44,6 +44,10 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
     const registerRequest = {...req.body};
+    console.log(
+        '🚀 ~ file: userAuthRoutes.js ~ line 47 ~ register ~ registerRequest',
+        registerRequest
+    );
 
     try {
         const user = await User.findOne({email: registerRequest.email})
