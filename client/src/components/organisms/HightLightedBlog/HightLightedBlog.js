@@ -1,4 +1,11 @@
-import {Grid, Typography, Box} from '@material-ui/core';
+import {
+    Grid,
+    Typography,
+    Box,
+    List,
+    ListItemText,
+    ListItem,
+} from '@material-ui/core';
 import React from 'react';
 import {useBlogContext} from '../../../context/Blog/BlogContext';
 
@@ -6,17 +13,25 @@ export function HightLightedBlog() {
     const {blogs} = useBlogContext();
 
     return (
-        <Grid container direction='column' style={{minHeight: '70vh'}}>
+        <Grid
+            container
+            direction='column'
+            style={{minHeight: '70vh', padding: '16px'}}
+        >
             <Grid item>
-                <Box p={2}>
-                    <Typography>Hight lighted</Typography>
+                <Box pb={3}>
+                    <Typography>High lighted</Typography>
                 </Box>
             </Grid>
             <Grid item>
-                {blogs &&
-                    blogs.map((blog) => (
-                        <Typography gutterBottom>{blog.title}</Typography>
-                    ))}
+                <List>
+                    {blogs &&
+                        blogs.map((blog) => (
+                            <ListItem button>
+                                <ListItemText primary={blog.title} />
+                            </ListItem>
+                        ))}
+                </List>
             </Grid>
         </Grid>
     );

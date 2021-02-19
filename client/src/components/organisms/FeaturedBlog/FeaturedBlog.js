@@ -8,28 +8,17 @@ export function FeaturedBlog() {
 
     return (
         <Grid container direction='column' style={{minHeight: '70vh'}}>
-            <Grid item style={{borderBottom: '1px solid lightgrey'}}>
-                <Box p={4}>
-                    <Typography>
-                        {featured ? (
-                            featured.title
-                        ) : (
-                            <Skeleton animation='wave' />
-                        )}
-                    </Typography>
-                </Box>
-            </Grid>
             <Grid item>
-                <Box p={4}>
-                    <Typography>
-                        {featured ? (
-                            featured.content
-                        ) : (
-                            <Skeleton animation='wave' />
-                        )}
-                    </Typography>
-                </Box>
+                {featured ? (
+                    <Box p={4} children={getBlogHtml()} />
+                ) : (
+                    <Skeleton animation='wave' />
+                )}
             </Grid>
         </Grid>
     );
+
+    function getBlogHtml() {
+        return <div dangerouslySetInnerHTML={{__html: featured.content}} />;
+    }
 }

@@ -1,7 +1,7 @@
 @baseUrl = http://localhost:3001/api
 @adminUrl = http://localhost:5000/admin/api
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMTVkNDViOTM3OWI1MGEyNDdhOWE1MiIsImlhdCI6MTYxMjEyNDY4OSwiZXhwIjozMjI0MjUyOTc1fQ.XH5Jub6MpETRDhtwStSWO0TjifSm-yGDrG77dWBXeA8
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMmVkMWQ1MjRlYjA1MWE5OGQ5Zjg5OCIsImlhdCI6MTYxMzY4MTIwMCwiZXhwIjozMjI3MzY0OTczfQ.ekqhry7NvvgQe-NIPI1utHA4G7ickKyraAg7mwxHPkU
 @adminToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMWE4ODc2ZjYwOTRhNDYwNDAwYjNmZSIsImlhdCI6MTYxMjM1MjgzNSwiZXhwIjozMjI0NzA5MjE5fQ.FyKFXxBuQjBnv-1niE1IAiIrqDRwFxqSZZgUjnMepYM
 
 ###
@@ -24,8 +24,8 @@ POST  {{baseUrl}}/user/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "email":"user1@test.com",
-    "password": "password"
+    "email":"admin@test.com",
+    "password": "admin"
 }
 
 
@@ -37,9 +37,9 @@ POST  {{baseUrl}}/user/register HTTP/1.1
 Content-Type: application/json
 
 {
-    "name":"user1",
-    "email":"user1@test.com",
-    "password": "password"
+    "name":"admin",
+    "email":"admin@test.com",
+    "password": "admin"
 }
 
 
@@ -93,9 +93,9 @@ POST  {{adminUrl}}/register HTTP/1.1
 Content-Type: application/json
 
 {
-    "user": "601324f0843d13413cdfd013",
-    "username": "bob",
-    "password":"password"
+    "user": "602ed1d524eb051a98d9f898",
+    "username": "admin",
+    "password":"admin"
 }
 
 ###
