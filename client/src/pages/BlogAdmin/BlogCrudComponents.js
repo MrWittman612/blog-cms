@@ -11,6 +11,7 @@ import {
     Show,
     SimpleShowLayout,
 } from 'react-admin';
+import RichTextInput from 'ra-input-rich-text';
 
 export const BlogShow = (props) => (
     <Show {...props}>
@@ -24,7 +25,7 @@ export const BlogCreate = (props) => (
     <Create {...props}>
         <SimpleForm>
             <TextInput source='title' />
-            <TextInput source='content' options={{multiline: true}} />
+            <RichTextInput source='content' options={{multiline: true}} />
         </SimpleForm>
     </Create>
 );
@@ -39,7 +40,7 @@ export const BlogEdit = (props) => (
         <SimpleForm>
             <TextInput disabled label='Id' source='id' />
             <TextInput source='title' />
-            <TextInput source='content' />
+            <RichTextInput source='content' />
         </SimpleForm>
     </Edit>
 );
