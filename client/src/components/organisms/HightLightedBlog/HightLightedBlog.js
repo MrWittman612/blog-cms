@@ -27,7 +27,7 @@ export function HightLightedBlog() {
                 <List>
                     {blogs &&
                         blogs.map((blog) => (
-                            <ListItem button>
+                            <ListItem key={blog._id} button>
                                 <ListItemText primary={blog.title} />
                             </ListItem>
                         ))}
