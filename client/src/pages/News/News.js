@@ -1,14 +1,10 @@
 import React from 'react';
-import {
-    CircularProgress,
-    Container,
-    CssBaseline,
-    Grid,
-} from '@material-ui/core';
+import {Container, CssBaseline, Grid} from '@material-ui/core';
 import ArticleCard from '../../components/organisms/ArticleCard';
 import NewsHeader from '../../components/templates/NewsHeader';
 import {NewsProvider} from '../../context/News/NewsProvider';
 import {useNewsContext} from '../../context/News/NewsContext';
+import {ArticleCardSkeleton} from './ArticleCardSkeleton';
 
 const newsOptionLinks = [
     {title: 'World', url: '/news/world'},
@@ -36,11 +32,10 @@ export function News() {
         </React.Fragment>
     );
 }
+
 function NewsCardList() {
     const {articles} = useNewsContext();
-    return articles ? (
-        articles.map((a) => <ArticleCard article={a} key={a.title} />)
-    ) : (
-        <CircularProgress />
-    );
+    return articles
+        ? articles.map((a) => <ArticleCard article={a} key={a.title} />)
+        : [1, 2, 3, 4].map((i) => <ArticleCardSkeleton key={i} />);
 }
