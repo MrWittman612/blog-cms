@@ -8,9 +8,10 @@
     "start": "NODE_ENV=production node .",
     "dev:server": "nodemon .",
     "dev": "concurrently \"nodemon .\" \"cd client && npm run start\"",
-    "build":"npm run build --prefix"
+    "build":"npm run build --prefix client"
   },
   "repository": {
+    
     "type": "git",
     "url": "git+https://github.com/MrWittman612/blog-cms.git"
   },
