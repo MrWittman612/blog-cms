@@ -1,6 +1,6 @@
-import {makeStyles, Button, Toolbar, Typography} from '@material-ui/core';
+import {makeStyles, Button, Toolbar, Link, Typography} from '@material-ui/core';
 import React, {Fragment} from 'react';
-import {Link} from 'react-router-dom';
+import {Link as RouterLink} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     toolbar: {
@@ -12,6 +12,10 @@ const useStyles = makeStyles((theme) => ({
     toolbarSecondary: {
         justifyContent: 'space-around',
         overflowX: 'auto',
+    },
+    toolbarLink: {
+        padding: theme.spacing(1),
+        flexShrink: 0,
     },
 }));
 
@@ -35,16 +39,23 @@ export function NewsHeader({title, buttonLinks}) {
                     Admin
                 </Button>
             </Toolbar>
-            <Toolbar className={classes.toolbarSecondary}>
+            <Toolbar
+                component='nav'
+                variant='dense'
+                className={classes.toolbarSecondary}
+            >
                 {buttonLinks.map((btn) => (
-                    <Button
+                    <Link
+                        className={classes.toolbarLink}
+                        noWrap
+                        variant='body2'
                         key={btn.title}
-                        component={Link}
+                        component={RouterLink}
                         to={btn.url}
                         style={{marginLeft: 12}}
                     >
                         {btn.title}
-                    </Button>
+                    </Link>
                 ))}
             </Toolbar>
         </Fragment>

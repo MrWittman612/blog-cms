@@ -1,5 +1,10 @@
 import React from 'react';
-import {CircularProgress, Container, Grid} from '@material-ui/core';
+import {
+    CircularProgress,
+    Container,
+    CssBaseline,
+    Grid,
+} from '@material-ui/core';
 import ArticleCard from '../../components/organisms/ArticleCard';
 import NewsHeader from '../../components/templates/NewsHeader';
 import {NewsProvider} from '../../context/News/NewsProvider';
@@ -19,6 +24,7 @@ const newsOptionLinks = [
 export function News() {
     return (
         <React.Fragment>
+            <CssBaseline />
             <Container maxWidth='lg'>
                 <NewsHeader title='Top News' buttonLinks={newsOptionLinks} />
                 <Grid container spacing={4}>
