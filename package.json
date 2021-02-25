@@ -8,7 +8,8 @@
     "start": "NODE_ENV=production node .",
     "dev:server": "nodemon .",
     "dev": "concurrently \"nodemon .\" \"cd client && npm run start\"",
-    "build":"npm run build --prefix client"
+    "build":"npm run build --prefix client",
+    "postinstall": "npm --prefix client install"
   },
   "repository": {
     
