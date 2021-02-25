@@ -83,7 +83,7 @@ export function Register() {
 
             try {
                 const response = await axios.post(
-                    'http://localhost:3001/api/user/register',
+                    '/api/user/register',
                     newUser
                 );
                 console.log(

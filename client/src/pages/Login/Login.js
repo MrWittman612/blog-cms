@@ -78,10 +78,7 @@ export function Login() {
         event.preventDefault();
 
         try {
-            const response = await axios.post(
-                'http://localhost:3001/api/user/login',
-                formData
-            );
+            const response = await axios.post('/api/user/login', formData);
             console.log(response);
             saveAuthToken(response.data.token);
             history.push('/news');

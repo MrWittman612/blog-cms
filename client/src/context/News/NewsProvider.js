@@ -24,7 +24,7 @@ export function NewsProvider(props) {
         const getNews = async () => {
             console.log('I ran');
             try {
-                const uri = `http://localhost:3001/api/news/${
+                const uri = `/api/news/${
                     match === null ? 'entertainment' : match.params.newsOptions
                 }`;
 

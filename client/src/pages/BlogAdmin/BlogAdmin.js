@@ -23,10 +23,7 @@ const authProvider = {
     // authentication
     login: async (data) => {
         try {
-            const admin = await Axios.post(
-                'http://localhost:5000/admin/api/login',
-                data
-            );
+            const admin = await Axios.post('/admin/api/login', data);
             saveAuthToken(admin.data.token);
             return admin;
         } catch (error) {
@@ -75,7 +72,7 @@ export function BlogAdmin() {
 }
 
 function dbUrl(resource) {
-    return `http://localhost:5000/admin/api/${resource}`;
+    return `/admin/api/${resource}`;
 }
 
 function formattedResponse(dbRes) {
@@ -100,9 +97,7 @@ const getBlogs = async (resource, params) => {
 
 const getBlog = async (resource, params) => {
     try {
-        const dbRes = await Axios.get(
-            `http://localhost:5000/admin/api/${resource}/${params.id}`
-        );
+        const dbRes = await Axios.get(`/admin/api/${resource}/${params.id}`);
 
         const returnData = {
             data: {
@@ -154,10 +149,6 @@ const dataProvider = {
         }
     },
     updateMany: async (resource, params) => {
-        console.log(
-            '🚀 ~ file: BlogAdmin.js ~ line 60 ~ create: ~ params',
-            params
-        );
         try {
             const dbRes = await Axios.post(dbUrl(resource));
             return formattedResponse(dbRes);
@@ -166,10 +157,6 @@ const dataProvider = {
         }
     },
     delete: async (resource, params) => {
-        console.log(
-            '🚀 ~ file: BlogAdmin.js ~ line 139 ~ delete: ~ params',
-            params
-        );
         try {
             const dbRes = await Axios.delete(dbUrl(resource));
             return formattedResponse(dbRes);

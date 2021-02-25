@@ -10,7 +10,7 @@ export function BlogProvider(props) {
 
     const getBlogs = useCallback(async () => {
         try {
-            const dbRes = await Axios.get('http://localhost:3001/api/blogs');
+            const dbRes = await Axios.get('/api/blogs');
             setBlogs(dbRes.data);
         } catch (error) {
             console.log(error);
