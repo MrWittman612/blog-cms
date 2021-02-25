@@ -10,6 +10,7 @@ const blogRouter = require('./api/blog/blog.router');
 const newsRouter = require('./api/news/news.router');
 const adminRouter = require('./api/admin/admin.router');
 const path = require('path');
+
 const port = process.env.PORT || 3001;
 
 const jsonParser = express.json();
