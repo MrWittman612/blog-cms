@@ -20,9 +20,7 @@ export function NewsProvider(props) {
     let value = {articles};
 
     useEffect(() => {
-        console.log('useEffect ran');
         const getNews = async () => {
-            console.log('I ran');
             try {
                 const uri = `/api/news/${
                     match === null ? 'entertainment' : match.params.newsOptions

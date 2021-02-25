@@ -44,11 +44,6 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
     const registerRequest = {...req.body};
-    console.log(
-        '🚀 ~ file: userAuthRoutes.js ~ line 47 ~ register ~ registerRequest',
-        registerRequest
-    );
-
     try {
         const user = await User.findOne({email: registerRequest.email})
             .select('email')
@@ -93,7 +88,6 @@ const protectedUserRoute = async (req, res, next) => {
     let payload;
     try {
         payload = await verifyToken(token);
-        console.log('no token', payload);
     } catch (error) {
         console.log(error);
         return res.status(401).end();
@@ -107,7 +101,6 @@ const protectedUserRoute = async (req, res, next) => {
         return res.status(401).end();
     }
     req.user = user;
-    console.log('user::', req.user);
     return next();
 };
 

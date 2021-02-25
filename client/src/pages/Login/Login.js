@@ -79,7 +79,6 @@ export function Login() {
 
         try {
             const response = await axios.post('/api/user/login', formData);
-            console.log(response);
             saveAuthToken(response.data.token);
             history.push('/news');
         } catch (error) {

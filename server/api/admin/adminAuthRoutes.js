@@ -47,7 +47,6 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
     const registerRequest = {...req.body};
-    console.log("shouldn't need this for now");
 
     try {
         const user = await Admin.findOne({email: registerRequest.email})
@@ -93,7 +92,6 @@ const protectedAdminRoute = async (req, res, next) => {
     let payload;
     try {
         payload = await verifyToken(token);
-        console.log('no token', payload);
     } catch (error) {
         console.log(error);
         return res.status(401).end();
@@ -107,7 +105,6 @@ const protectedAdminRoute = async (req, res, next) => {
         return res.status(401).end();
     }
     req.admin = admin;
-    console.log('user::', req.admin);
     return next();
 };
 

@@ -45,7 +45,6 @@ const authProvider = {
         return Promise.resolve();
     },
     getIdentity: (props) => {
-        console.log('🚀 ~ file: BlogAdmin.js ~ line 42 ~ props', props);
         return Promise.resolve();
     },
     // authorization

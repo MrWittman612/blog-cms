@@ -12,7 +12,6 @@ const getNews = async (req, res) => {
     };
 
     try {
-        console.log('getNews controller was called');
         const news = await Axios.get(url, options);
 
         return res.send(news.data);

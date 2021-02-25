@@ -86,10 +86,6 @@ export function Register() {
                     '/api/user/register',
                     newUser
                 );
-                console.log(
-                    '🚀 ~ file: Register.js ~ line 92 ~ registerUser ~ response',
-                    response
-                );
 
                 saveAuthToken(response.data.token);
                 history.push('/news');
@@ -131,7 +127,8 @@ export function Register() {
                                 id='password'
                                 name='password'
                                 type='password'
-                                // type={showPassword ? 'text' : 'password'}
+                                // eslint-disable-next-line react/jsx-no-duplicate-props
+                                type={showPassword ? 'text' : 'password'}
                                 onChange={updateForm}
                                 error={error}
                                 inputProps={{htmlFor: 'password'}}

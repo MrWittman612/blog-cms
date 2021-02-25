@@ -39,10 +39,6 @@ const createBlog = async (req, res) => {
 };
 
 const deleteBlog = async (req, res) => {
-    console.log(
-        '🚀 ~ file: admin.blog.controllers.js ~ line 40 ~ deleteBlog ~ req',
-        req.params.ids
-    );
     let toDelete = {
         _id: {
             $in: req.params.ids,
@@ -50,10 +46,7 @@ const deleteBlog = async (req, res) => {
     };
     try {
         const dbRes = await Blog.deleteMany(toDelete);
-        console.log(
-            '🚀 ~ file: admin.blog.controllers.js ~ line 48 ~ deleteBlog ~ dbRes',
-            dbRes
-        );
+
         return res.send(dbRes);
     } catch (error) {}
 };
@@ -66,10 +59,7 @@ const deleteBlogs = async (req, res) => {
                 $in: idArr,
             },
         });
-        console.log(
-            '🚀 ~ file: admin.blog.controllers.js ~ line 67 ~ deleteBlogs ~ dbRes',
-            dbRes
-        );
+
         return res.send(idArr);
     } catch (error) {
         console.log(error);

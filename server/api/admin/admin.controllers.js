@@ -23,7 +23,6 @@ function verifyToken(token) {
 const getAdmin = async (req, res) => {
     try {
         const admin = await Admin.findById(req.admin._id).select('-password');
-        console.log('admin::', admin);
 
         return res.send(admin);
     } catch (error) {
@@ -61,10 +60,6 @@ const adminLogin = async (req, res) => {
 
 const registerAdmin = async (req, res) => {
     const registerRequest = {...req.body};
-    console.log(
-        '🚀 ~ file: admin.controllers.js ~ line 72 ~ registerAdmin ~ registerRequest',
-        registerRequest
-    );
 
     try {
         const user = await Admin.findOne({username: registerRequest.username});
@@ -108,7 +103,6 @@ const protectedAdminRoute = async (req, res, next) => {
     let payload;
     try {
         payload = await verifyToken(token);
-        console.log('no token', payload);
     } catch (error) {
         console.log(error);
         return res.status(401).end();
@@ -122,15 +116,12 @@ const protectedAdminRoute = async (req, res, next) => {
         return res.status(401).end();
     }
     req.admin = admin;
-    console.log('user::', req.admin);
     return next();
 };
 
 const getAdmins = async (req, res) => {
-    console.log('🚀 ~ file: admin.controllers.js getAdmins ~ req', req);
     try {
         const admin = await Admin.find();
-        console.log('users', admin);
 
         return res.send(admin);
     } catch (error) {

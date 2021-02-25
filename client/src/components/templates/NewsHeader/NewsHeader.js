@@ -27,11 +27,11 @@ export function NewsHeader({title, buttonLinks}) {
                 <Typography className={classes.toolbarTitle} component='h3'>
                     {title}
                 </Typography>
-                <Button component={Link} to={'/'}>
+                <Button component={RouterLink} to={'/'}>
                     blog
                 </Button>
                 <Button
-                    component={Link}
+                    component={RouterLink}
                     to={'/admin'}
                     variant='outlined'
                     style={{marginLeft: 12}}
