@@ -13,6 +13,7 @@ const path = require('path');
 const port = process.env.PORT || 3001;
 
 const jsonParser = express.json();
+// const urlencodedParser = express.urlencoded({extended: false});
 
 app.use(cors());
 app.use(jsonParser);
@@ -20,7 +21,6 @@ app.use(express.urlencoded({extended: true}));
 admin.use(cors());
 admin.use(jsonParser);
 admin.use(express.urlencoded({extended: true}));
-// const urlencodedParser = express.urlencoded({extended: false});
 
 connectMongoDB();
 
