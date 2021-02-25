@@ -31,8 +31,8 @@ app.use('/api/blogs', blogRouter);
 
 app.use('/api/news', newsRouter);
 
-admin.use('/admin/api', adminRouter);
 app.use('/admin/api', admin);
+admin.use('/', adminRouter);
 
 if (process.env.NODE_ENV === 'production') {
     // Set static folder
@@ -48,7 +48,6 @@ if (process.env.NODE_ENV === 'production') {
 
 function start() {
     app.listen(port, () => console.log('server started'));
-    // admin.listen(5000, console.log('admin started'));
 }
 
 exports.start = start;

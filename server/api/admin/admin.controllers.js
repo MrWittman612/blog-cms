@@ -21,7 +21,6 @@ function verifyToken(token) {
 }
 
 const getAdmin = async (req, res) => {
-    console.log('🚀 ~ file: admin.controllers.js getAdmins ~ req', req.admin);
     try {
         const admin = await Admin.findById(req.admin._id).select('-password');
         console.log('admin::', admin);
